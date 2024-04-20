@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plus And Minus</title>
+</head>
+<body>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50vh;
+    }
+    #buy-amont{
+      display: flex;
+    }
+    #buy-amont button {
+      width: 35px;
+      height: 35px;
+      outline: none;
+      background: none;
+      border: 1px solid #ececec;
+      cursor: pointer;
+    }
+    #buy-amont button :hover {
+      background-color: #ececec;
+    }
+    #buy-amont button svg {
+      color: #909090;
+    }
+    #buy-amont button svg {
+      color: #4f4f4f;
+    }
+    #buy-amont #amount {
+      width: 40px;
+      text-align: center;
+      border: 1px solid #ececec;
+    }
+  </style>
+  <div id="buy-amont">
+    <button class="btn-minus" onclick="handleMinus()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+      </svg>
+    </button>
+    
+    <input type="text" name="amount" id="amount" value="1">
+
+    <button class="btn-plus" onclick="handlePlus()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+      </svg>
+      
+    </button>
+  </div>
+  <script>
+    let element = document.getElementById("amount");
+    let amount = element.value;
+    //  console.log(amount);
+    // gán lại giá trị amount
+    let render = (amount) => {
+      element.value = amount;
+    }
+// cộng thêm
+    let handlePlus = () => {
+      amount ++;
+      render(amount);
+    }
+
+    let handleMinus = () => {
+      if(amount > 1)
+      amount --;
+      render(amount);
+
+    }
+
+    element.addEventListener('input', () => {
+      amount = element.value;
+      //convert sang kiểu số nếu người dùng nhập kiểu string 
+      amount = parseInt(amount);
+      // kiểm tra xem string và k cho nhập 0 sẽ về mặc định về 1
+      amount = (isNaN(amount) || amount == 0) ? 1 : amount;
+      //gán lại giá trị amount
+      render(amount);
+    })
+
+
+   
+  </script>
+</body>
+</html>
